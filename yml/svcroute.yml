@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: SvcRoute
+metadata:
+  name: testapi_svcroute 
+  namespace: svcrouter-test1
+spec:
+  global: true
+  host: reflector-test1-global
+  rule:
+    type: Percentage
+  to:
+  - balance: roundrobin
+    kind: Service
+    name: reflector-test1-v-2
+    rule: 20
+  - balance: roundrobin
+    kind: Service
+    name: reflector-test1-v-1
+    rule: 80
+status:
+  ingress:
+  - aliases:
+    - reflector-test1-global
+    - reflector-test1-global.global
+    conditions:
+    - lastTransitionTime: 2017-02-27T06:21:26Z
+      status: "True"
+      type: Admitted
+    svcrouterName: default/svcrouter1
+

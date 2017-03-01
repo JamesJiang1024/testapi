@@ -5,7 +5,7 @@ metadata:
     openshift.io/generated-by: JiangWentianLocalVM 
   labels:
     app: testapi 
-  name: testapi 
+  name: testapi-v-2
   namespace: svcrouter-test1
 spec:
   ports:
