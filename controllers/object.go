@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"testapi/models"
 	"encoding/json"
+	"testapi/models"
+	"time"
 
 	"github.com/astaxie/beego"
 )
@@ -52,6 +53,7 @@ func (o *ObjectController) Get() {
 // @router / [get]
 func (o *ObjectController) GetAll() {
 	obs := models.GetAll()
+	time.Sleep(time.Second)
 	o.Data["json"] = obs
 	o.ServeJSON()
 }
@@ -68,7 +70,7 @@ func (o *ObjectController) Put() {
 	var ob models.Object
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 
-	err := models.Update(objectId, ob.Score)
+	err := models.Update(objectId, ob.Version)
 	if err != nil {
 		o.Data["json"] = err.Error()
 	} else {
@@ -89,4 +91,3 @@ func (o *ObjectController) Delete() {
 	o.Data["json"] = "delete success!"
 	o.ServeJSON()
 }
-

@@ -12,14 +12,13 @@ var (
 
 type Object struct {
 	ObjectId   string
-	Score      int64
+	Version    string
 	PlayerName string
 }
 
 func init() {
 	Objects = make(map[string]*Object)
-	Objects["hjkhsbnmn123"] = &Object{"hjkhsbnmn123", 100, "astaxie"}
-	Objects["mjjkxsxsaa23"] = &Object{"mjjkxsxsaa23", 101, "someone"}
+	Objects["bb3f3e75-c777-4519-b18e-87d187e883e1"] = &Object{"bb3f3e75-c777-4519-b18e-87d187e883e1", "v2.0", "yuejun"}
 }
 
 func AddOne(object Object) (ObjectId string) {
@@ -39,9 +38,9 @@ func GetAll() map[string]*Object {
 	return Objects
 }
 
-func Update(ObjectId string, Score int64) (err error) {
+func Update(ObjectId string, Version string) (err error) {
 	if v, ok := Objects[ObjectId]; ok {
-		v.Score = Score
+		v.Version = Version
 		return nil
 	}
 	return errors.New("ObjectId Not Exist")
@@ -50,4 +49,3 @@ func Update(ObjectId string, Score int64) (err error) {
 func Delete(ObjectId string) {
 	delete(Objects, ObjectId)
 }
-
