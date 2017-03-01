@@ -17,4 +17,4 @@ WORKDIR /var/lib/origin
 
 LABEL io.k8s.display-name="Beego Example" \
       io.k8s.description="This is a Beego Example."
-ENTRYPOINT ["/usr/bin/beego-ex"]
+ENTRYPOINT ["/usr/bin/testapi"]
