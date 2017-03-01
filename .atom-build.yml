@@ -1,1 +1,1 @@
-cmd: hack/clean_oneline.sh;hack/buildimage.sh;hack/pushimage.sh;hack/create_oneline_resource.sh;
+cmd: hack/buildimage.sh;hack/pushimage.sh;
