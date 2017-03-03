@@ -1,2 +1,4 @@
 #!/bin/bash
-for i in `oc get all | grep testapi | awk '{print $1}'`;do oc delete $i;done
+
+echo "Delete Online Test Usecase"
+for i in `oc get all | grep testapi-v | grep -v 'rc' | awk '{print $1}'`;do oc delete $i;done
