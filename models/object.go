@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"os"
 	"strconv"
 	"time"
 )
@@ -18,7 +19,11 @@ type Object struct {
 
 func init() {
 	Objects = make(map[string]*Object)
-	Objects["bb3f3e75-c777-4519-b18e-87d187e883e1"] = &Object{"bb3f3e75-c777-4519-b18e-87d187e883e1", "v3.0", "wentian"}
+	localversion := os.Getenv("APPVERSION")
+	if localversion == "" {
+		localversion = "v1.0"
+	}
+	Objects["bb3f3e75-c777-4519-b18e-87d187e883e1"] = &Object{"bb3f3e75-c777-4519-b18e-87d187e883e1", localversion, "wentian"}
 }
 
 func AddOne(object Object) (ObjectId string) {

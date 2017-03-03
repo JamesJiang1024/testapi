@@ -2,6 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
+	"log"
+	"os"
+	"strconv"
 	"testapi/models"
 	"time"
 
@@ -53,9 +56,29 @@ func (o *ObjectController) Get() {
 // @router / [get]
 func (o *ObjectController) GetAll() {
 	obs := models.GetAll()
-	time.Sleep(time.Second)
-	o.Data["json"] = obs
-	o.ServeJSON()
+	timetowait := os.Getenv("TIMEWAITSEC")
+	errHappend := os.Getenv("ERRORCODE")
+
+	timesec, err := strconv.Atoi(timetowait)
+
+	if err != nil {
+		timesec = 0
+		log.Println("Time to wait is not setting, defualt 0")
+	}
+	errcode, err := strconv.Atoi(errHappend)
+
+	if err != nil {
+		errcode = 200
+		log.Println("ErrorCode is setting, default 200")
+	}
+	if errcode == 500 {
+		o.CustomAbort(500, "Internal Server Error")
+	} else {
+		time.Sleep(time.Duration(timesec) * time.Second)
+		o.Data["json"] = obs
+		o.ServeJSON()
+	}
+
 }
 
 // @Title Update
