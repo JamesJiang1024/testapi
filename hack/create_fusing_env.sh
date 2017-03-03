@@ -16,7 +16,7 @@ oc new-app --image-stream="svcrouter-test1/testapi:v1-$version" --name testapi-v
 
 echo "Create svc routes" 
 cat yml/fusing-testing.yml
-oc create -f testapi-v-1-fusing.yml
-oc create -f testapi-v-2-fusing.yml
-oc create -f testapi-v-3-fusing.yml
+oc create -f yml/service/testapi-v-1-fusing.yml
+oc create -f yml/service/testapi-v-2-fusing.yml
+oc create -f yml/service/testapi-v-3-fusing.yml
 oc create -f yml/fusing-testing.yml 
