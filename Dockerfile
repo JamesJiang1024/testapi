@@ -2,12 +2,13 @@
 
 FROM centos:centos7
 
-COPY testapi  /usr/bin/
+COPY testapi.tar.gz /usr/bin/
 
 RUN rm -f /etc/yum.repos.d/*.repo && \
     cd /etc/yum.repos.d && \
     curl -LJOs http://mirrors.163.com/.help/CentOS7-Base-163.repo && \
     yum clean all && \
+    tar -zxvf /usr/bin/testapi.tar.gz && \
     mkdir -p /var/lib/origin
 
 WORKDIR /var/lib/origin
