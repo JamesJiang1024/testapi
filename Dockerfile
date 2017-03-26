@@ -2,16 +2,13 @@
 
 FROM centos:centos7
 
-COPY .output/  /usr/bin/
+COPY testapi  /usr/bin/
 
 RUN rm -f /etc/yum.repos.d/*.repo && \
     cd /etc/yum.repos.d && \
-    curl -LJOs http://172.27.18.49:8888/yum/CentOS.repo && \
-    cd /etc/pki/rpm-gpg && \
-    curl -LJOs http://172.27.18.49:8888/yum/ius/IUS-COMMUNITY-GPG-KEY && \
+    curl -LJOs http://mirrors.163.com/.help/CentOS7-Base-163.repo && \
     yum clean all && \
     mkdir -p /var/lib/origin
-
 
 WORKDIR /var/lib/origin
 
